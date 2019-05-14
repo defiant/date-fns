@@ -1,69 +1,69 @@
 var formatDistanceLocale = {
   lessThanXSeconds: {
-    one: 'less than a second',
-    other: 'less than {{count}} seconds'
+    one: 'bir saniyeden az',
+    other: '{{count}} saniyeden az'
   },
 
   xSeconds: {
-    one: '1 second',
-    other: '{{count}} seconds'
+    one: '1 saniye',
+    other: '{{count}} saniye'
   },
 
-  halfAMinute: 'half a minute',
+  halfAMinute: 'yarım dakika',
 
   lessThanXMinutes: {
-    one: 'less than a minute',
-    other: 'less than {{count}} minutes'
+    one: 'bir dakikadan az',
+    other: '{{count}} dakikadan az'
   },
 
   xMinutes: {
-    one: '1 minute',
-    other: '{{count}} minutes'
+    one: '1 dakika',
+    other: '{{count}} dakika'
   },
 
   aboutXHours: {
-    one: 'about 1 hour',
-    other: 'about {{count}} hours'
+    one: 'yaklaşık 1 saat',
+    other: 'yaklaşık {{count}} saat'
   },
 
   xHours: {
-    one: '1 hour',
-    other: '{{count}} hours'
+    one: '1 saat',
+    other: '{{count}} saat'
   },
 
   xDays: {
-    one: '1 day',
-    other: '{{count}} days'
+    one: '1 gün',
+    other: '{{count}} gün'
   },
 
   aboutXMonths: {
-    one: 'about 1 month',
-    other: 'about {{count}} months'
+    one: 'yaklaşık 1 ay',
+    other: 'yaklaşık {{count}} ay'
   },
 
   xMonths: {
-    one: '1 month',
-    other: '{{count}} months'
+    one: '1 ay',
+    other: '{{count}} ay'
   },
 
   aboutXYears: {
-    one: 'about 1 year',
-    other: 'about {{count}} years'
+    one: 'yaklaşık 1 yıl',
+    other: 'yaklaşık {{count}} yıl'
   },
 
   xYears: {
-    one: '1 year',
-    other: '{{count}} years'
+    one: '1 yıl',
+    other: '{{count}} yıl'
   },
 
   overXYears: {
-    one: 'over 1 year',
-    other: 'over {{count}} years'
+    one: '1 yıldan fazla',
+    other: '{{count}} yıldan fazla'
   },
 
   almostXYears: {
-    one: 'almost 1 year',
-    other: 'almost {{count}} years'
+    one: 'neredeyse 1 yıl',
+    other: 'neredeyse {{count}} yıl'
   }
 }
 
@@ -80,10 +80,15 @@ export default function formatDistance (token, count, options) {
   }
 
   if (options.addSuffix) {
+    var extraWord = ''
+    if (extraWordTokens.indexOf(token) > -1) {
+      extraWord = ' bir süre'
+    }
+
     if (options.comparison > 0) {
-      return 'in ' + result
+      return result + extraWord + ' içinde'
     } else {
-      return result + ' ago'
+      return result + extraWord + ' önce'
     }
   }
 
