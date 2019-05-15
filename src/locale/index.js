@@ -25,6 +25,7 @@ module.exports = {
   ptBR: require('./pt-BR/index.js'),
   ru: require('./ru/index.js'),
   sv: require('./sv/index.js'),
+  tr: require('./tr-TR/index.js'),
   uk: require('./uk/index.js'),
   vi: require('./vi/index.js'),
   zhCN: require('./zh-CN/index.js')
