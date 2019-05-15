@@ -186,13 +186,13 @@ describe('tr-TR locale > formatDistance', function() {
   describe('almostXYears', function() {
     context('when the count equals 1', function() {
       it('returns a proper string', function() {
-        assert(formatDistance('almostXYears', 1) === 'neredeyse 1 yıl')
+        assert(formatDistance('almostXYears', 1) === 'yaklaşık 1 yıl')
       })
     })
 
     context('when the count is more than 1', function() {
       it('returns a proper string', function() {
-        assert(formatDistance('almostXYears', 2) === 'neredeyse 2 yıl')
+        assert(formatDistance('almostXYears', 2) === 'yaklaşık 2 yıl')
       })
     })
   })
@@ -203,7 +203,7 @@ describe('tr-TR locale > formatDistance', function() {
         addSuffix: true,
         comparison: -1
       })
-      assert(result === 'neredeyse 1 yıl önce')
+      assert(result === 'yaklaşık 1 yıl önce')
     })
   })
 

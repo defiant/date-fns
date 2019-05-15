@@ -62,8 +62,8 @@ var formatDistanceLocale = {
   },
 
   almostXYears: {
-    one: 'neredeyse 1 yıl',
-    other: 'neredeyse {{count}} yıl'
+    one: 'yaklaşık 1 yıl',
+    other: 'yaklaşık {{count}} yıl'
   }
 }
 
@@ -81,7 +81,7 @@ export default function formatDistance(token, count, options) {
 
   if (options.addSuffix) {
     if (options.comparison > 0) {
-      return result + ' içinde'
+      return result + ' sonra'
     } else {
       return result + ' önce'
     }
