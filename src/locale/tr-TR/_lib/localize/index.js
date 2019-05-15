@@ -1,96 +1,96 @@
 import buildLocalizeFn from '../../../_lib/buildLocalizeFn/index.js'
 
 var eraValues = {
-  narrow: ['B', 'A'],
-  abbreviated: ['BC', 'AD'],
-  wide: ['Before Christ', 'Anno Domini']
+  narrow: ['Ö', 'S'],
+  abbreviated: ['MÖ', 'MS'],
+  wide: ['Milattan Önce', 'Milattan Sonra']
 }
 
 var quarterValues = {
   narrow: ['1', '2', '3', '4'],
   abbreviated: ['Q1', 'Q2', 'Q3', 'Q4'],
-  wide: ['1st quarter', '2nd quarter', '3rd quarter', '4th quarter']
+  wide: ['1. çeyrek', '2. çeyrek', '3. çeyrek', '4. çeyrek']
 }
 
-// Note: in English, the names of days of the week and months are capitalized.
+// Note: in Turkish, the names of days of the week and months are capitalized.
 // If you are making a new locale based on this one, check if the same is true for the language you're working on.
 // Generally, formatted dates should look like they are in the middle of a sentence,
 // e.g. in Spanish language the weekdays and months should be in the lowercase.
 var monthValues = {
-  narrow: ['J', 'F', 'M', 'A', 'M', 'J', 'J', 'A', 'S', 'O', 'N', 'D'],
-  abbreviated: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
-  wide: ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December']
+  narrow: ['O', 'Ş', 'M', 'N', 'M', 'H', 'T', 'A', 'E', 'E', 'K', 'A'],
+  abbreviated: ['Oca', 'Şub', 'Mar', 'Nisan', 'May', 'Haz', 'Tem', 'Ağu', 'Eyl', 'Eki', 'Kas', 'Ara'],
+  wide: ['Ocak', 'Şubat', 'Mart', 'Nisan', 'Mayıs', 'Haziran', 'Temmuz', 'Ağustos', 'Eylül', 'Ekim', 'Kasım', 'Aralık']
 }
 
 var dayValues = {
-  narrow: ['S', 'M', 'T', 'W', 'T', 'F', 'S'],
-  short: ['Su', 'Mo', 'Tu', 'We', 'Th', 'Fr', 'Sa'],
-  abbreviated: ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'],
-  wide: ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday']
+  narrow: ['P', 'P', 'S', 'Ç', 'P', 'C', 'C'],
+  short: ['Pz', 'Pt', 'Sa', 'Ça', 'Pe', 'Cu', 'Ct'],
+  abbreviated: ['Paz', 'Pzt', 'Sal', 'Çar', 'Per', 'Cum', 'Cmt'],
+  wide: ['Pazar', 'Pazartesi', 'Salı', 'Çarşamba', 'Perşembe', 'Cuma', 'Cumartesi']
 }
 
 var dayPeriodValues = {
   narrow: {
     am: 'a',
     pm: 'p',
-    midnight: 'mi',
-    noon: 'n',
-    morning: 'morning',
-    afternoon: 'afternoon',
-    evening: 'evening',
-    night: 'night'
+    midnight: 'g.',
+    noon: 'ö.',
+    morning: 'sabah',
+    afternoon: 'ö.s.',
+    evening: 'akşam',
+    night: 'gece'
   },
   abbreviated: {
     am: 'AM',
     pm: 'PM',
-    midnight: 'midnight',
-    noon: 'noon',
+    midnight: 'gece yarısı',
+    noon: 'öğlen',
     morning: 'morning',
-    afternoon: 'afternoon',
-    evening: 'evening',
-    night: 'night'
+    afternoon: 'öğleden sonra',
+    evening: 'akşam',
+    night: 'gece yarısı'
   },
   wide: {
     am: 'a.m.',
     pm: 'p.m.',
-    midnight: 'midnight',
+    midnight: 'gece yarısı',
     noon: 'noon',
     morning: 'morning',
-    afternoon: 'afternoon',
-    evening: 'evening',
-    night: 'night'
+    afternoon: 'öğleden sonra',
+    evening: 'akşam',
+    night: 'gece yarısı'
   }
 }
 var formattingDayPeriodValues = {
   narrow: {
     am: 'a',
     pm: 'p',
-    midnight: 'mi',
-    noon: 'n',
-    morning: 'in the morning',
-    afternoon: 'in the afternoon',
-    evening: 'in the evening',
-    night: 'at night'
+    midnight: 'g',
+    noon: 'ö',
+    morning: 'sabahında',
+    afternoon: 'öğleninde',
+    evening: 'akşamında',
+    night: 'gecesinde'
   },
   abbreviated: {
     am: 'AM',
     pm: 'PM',
-    midnight: 'midnight',
+    midnight: 'gece yarısı',
     noon: 'noon',
-    morning: 'in the morning',
-    afternoon: 'in the afternoon',
-    evening: 'in the evening',
-    night: 'at night'
+    morning: 'sabahında',
+    afternoon: 'öğleninde',
+    evening: 'akşamında',
+    night: 'gecesinde'
   },
   wide: {
     am: 'a.m.',
     pm: 'p.m.',
-    midnight: 'midnight',
-    noon: 'noon',
-    morning: 'in the morning',
-    afternoon: 'in the afternoon',
-    evening: 'in the evening',
-    night: 'at night'
+    midnight: 'gece yarısı',
+    noon: 'öğlen',
+    morning: 'sabahında',
+    afternoon: 'öğleninde',
+    evening: 'akşamında',
+    night: 'gecesinde'
   }
 }
 
@@ -108,17 +108,17 @@ function ordinalNumber (dirtyNumber, dirtyOptions) {
   // 'day', 'hour', 'minute', 'second'
 
   var rem100 = number % 100
-  if (rem100 > 20 || rem100 < 10) {
-    switch (rem100 % 10) {
-      case 1:
-        return number + 'st'
-      case 2:
-        return number + 'nd'
-      case 3:
-        return number + 'rd'
-    }
-  }
-  return number + 'th'
+  // if (rem100 > 20 || rem100 < 10) {
+  //   switch (rem100 % 10) {
+  //     case 1:
+  //       return number + 'st'
+  //     case 2:
+  //       return number + 'nd'
+  //     case 3:
+  //       return number + 'rd'
+  //   }
+  // }
+  return number + '.'
 }
 
 var localize = {
